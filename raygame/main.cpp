@@ -8,6 +8,7 @@
 #include "enemy.h"
 #include "barbarian.h"
 #include <iostream>
+#include <ctime>
 
 int main()
 {
@@ -18,15 +19,13 @@ int main()
 
 	SetTargetFPS(60);
 
+	srand(time(NULL));
+
 	picker wiz("wizzard_f_idle_anim_f0.png", {200,200});
 	picker bar("knight_f_idle_anim_f0.png", {500, 200});
 
 	wizard urawizard("wizzard_f_idle_anim_f0.png");
 	barb ogh("knight_f_idle_anim_f0.png");
-	
-	/*imp i("imp_idle_anim_f0.png");
-	ogre o("ogre_idle_anim_f0.png");
-	necromancer n("necromancer_idle_anim_f0.png");*/
 
 	player * pl = nullptr;
 	
@@ -43,6 +42,15 @@ int main()
 	en[8] = new imp("imp_idle_anim_f0.png");
 	en[9] = new necromancer("necromancer_idle_anim_f0.png");
 
+	int randNumX = rand() % 750;
+	int randNumY = rand() % 400;
+
+	for (int i = 0; i < 10; i++)
+	{
+		randNumX = rand() % 750;
+		randNumY = rand() % 400;
+		en[i]->position = { (float)(randNumX), (float)(randNumY) };
+	}
 
 	bool waitingForChoice = true;
 	while (waitingForChoice)
@@ -87,11 +95,21 @@ int main()
 
 		pl->moveTo({cursor.x, cursor.y});
 
+		for (int i = 0; i < 10; i++)
+		{
+			en[i]->follow(pl->position);
+		}
+
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
 
 		pl->draw();
+
+		for (int i = 0; i < 10; i++)
+		{
+			en[i]->draw();
+		}
 
 		EndDrawing();
 	}

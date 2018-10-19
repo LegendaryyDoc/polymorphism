@@ -22,5 +22,21 @@ imp::~imp()
 
 bool imp::follow(const Vector2 & dest)
 {
-	return false;
+	if (dest.x + 20 > position.x)
+	{
+		position.x += speed;
+	}
+	if (dest.x - 20 < position.x)
+	{
+		position.x -= speed;
+	}
+	if (dest.y + 20 > position.y)
+	{
+		position.y += speed;
+	}
+	if (dest.y - 20 < position.y)
+	{
+		position.y -= speed;
+	}
+	return true;
 }

@@ -7,7 +7,7 @@ class imp : public enemy
 public:
 	bool enabled = false;
 
-	float speed = 5.0f;
+	float speed = 1.0f;
 
 	void draw();
 	bool follow(const Vector2 &dest);

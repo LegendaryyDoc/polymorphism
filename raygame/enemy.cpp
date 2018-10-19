@@ -20,7 +20,7 @@ bool enemy::follow(const Vector2 & dest)
 	{
 		position.y -= speed;
 	}
-	return false;
+	return true;
 }
 
 enemy::enemy(const std::string & fileName)
