@@ -26,7 +26,7 @@ player::~player()
 	UnloadTexture(mySprite);
 }
 
-void player::draw()
+void player::draw(Color h)
 {
-	DrawTexture(mySprite, 375, 225, WHITE);
+	DrawTexture(mySprite, 375, 225, h);
 }

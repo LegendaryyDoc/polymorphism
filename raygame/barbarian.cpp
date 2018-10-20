@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 
-void barb::draw()
+void barb::draw(Color h)
 {
-	DrawTexture(mySprite, position.x, position.y, WHITE);
+	DrawTexture(mySprite, position.x, position.y, h);
 }
 
 barb::barb(const std::string & fileName)

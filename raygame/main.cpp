@@ -1,3 +1,14 @@
+/*********************************************************/
+
+/*   Wizard Teleports To Mouse Location On Left CLick    */
+
+/*********************************************************/
+
+/* Knight Moves Towards The Mouse Location On Left Click */
+/*  If Shift And Left Click Knight Will Sprint Towards   */
+
+/*********************************************************/
+
 #include "raylib.h"
 #include "player.h"
 #include "picker.h"'
@@ -9,6 +20,8 @@
 #include "barbarian.h"
 #include <iostream>
 #include <ctime>
+#include <vector>
+#include <string>
 
 int main()
 {
@@ -29,7 +42,37 @@ int main()
 
 	player * pl = nullptr;
 	
-	enemy * en[10];
+	std::vector<enemy *> en;
+
+	en.push_back(new necromancer("necromancer_idle_anim_f0.png"));
+	en.push_back(new necromancer("necromancer_idle_anim_f0.png"));
+	en.push_back(new necromancer("necromancer_idle_anim_f0.png"));
+	en.push_back(new necromancer("necromancer_idle_anim_f0.png"));
+	en.push_back(new necromancer("necromancer_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new imp("imp_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	en.push_back(new ogre("ogre_idle_anim_f0.png"));
+	
+
+	en.size();
+
+	/*   Old Version For Enemy   */
+	/*enemy * en[10];
 
 	en[0] = new necromancer("necromancer_idle_anim_f0.png");
 	en[1] = new imp("imp_idle_anim_f0.png");
@@ -41,11 +84,12 @@ int main()
 	en[7] = new imp("imp_idle_anim_f0.png");
 	en[8] = new imp("imp_idle_anim_f0.png");
 	en[9] = new necromancer("necromancer_idle_anim_f0.png");
+	*/
 
 	int randNumX = rand() % 750;
 	int randNumY = rand() % 400;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < en.size(); i++)
 	{
 		randNumX = rand() % 750;
 		randNumY = rand() % 400;
@@ -95,18 +139,28 @@ int main()
 
 		pl->moveTo({cursor.x, cursor.y});
 
-		for (int i = 0; i < 10; i++)
+		if (!IsKeyDown(KEY_H))
 		{
-			en[i]->follow(pl->position);
+			for (int i = 0; i < en.size(); i++)
+			{
+				en[i]->follow(pl->position);
+			}
 		}
 
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
 
-		pl->draw();
+		if (IsKeyDown(KEY_H)) 
+		{
+			pl->draw(Color{255,255,255,90});
+		}
+		else if (!IsKeyDown(KEY_H))
+		{
+			pl->draw(WHITE);
+		}
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < en.size(); i++)
 		{
 			en[i]->draw();
 		}

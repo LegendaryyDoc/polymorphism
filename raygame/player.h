@@ -15,5 +15,5 @@ public:
 	player();
 	~player();
 
-	void virtual draw();
+	void virtual draw(Color h);
 };
